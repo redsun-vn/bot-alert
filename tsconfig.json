@@ -1,0 +1,16 @@
+{
+	"$schema": "https://json.schemastore.org/tsconfig",
+	"extends": "@tsconfig/recommended/tsconfig.json",
+	"compilerOptions": {
+		"baseUrl": ".",
+		"declaration": true,
+		"outDir": "./lib",
+		"paths": {
+			"@utils/*": ["src/utils/*"],
+			"@constants/*": ["src/constants/*"],
+			"@enums/*": ["src/enums/*"]
+		}
+	},
+	"include": ["src"],
+	"exclude": ["node_modules"]
+}
