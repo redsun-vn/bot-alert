@@ -5,10 +5,8 @@ async function main(): Promise<void> {
         webHookUrl: 'https://open.larksuite.com/open-apis/bot/v2/hook/4d5756a5-f6ae-42aa-bd70-adca81754a42',
         secretKey: 'PeJN1bdUHOllBjwyzh3qxc',
         timestamp: timestamp
-    });
-    
-    const sign = botLark.genSignature();
-    const res = await botLark.sendMessage(sign, 'Error');
+    });    
+    const res = await botLark.sendMessage('ApiGateway', 'Error', '');
     console.log(res.data)
 }
 

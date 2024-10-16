@@ -28,21 +28,43 @@ export class LarkSuitAlert {
         return hmac.digest('base64');
 	}
     
-    async sendMessage(sign: string , message: string): Promise<any> {
-        console.log(JSON.stringify({
-            timestamp: this._timestamp,
-            sign: sign,
-            msg_type: "text",
-            content: {
-                text: message
-            }
-        }))
+    async sendMessage(
+        serviceName: string,
+        message: string,
+        topic?: (string | null), 
+    ): Promise<any> {
         return axios.post<any>(this._webHookUrl, {
             timestamp: this._timestamp,
-            sign: sign,
             msg_type: "text",
             content: {
-                text: message
+                text: `${serviceName}` + (topic || '') + message
+            }
+        });
+    }
+
+    async sendMessageError(
+        serviceName: string,
+        message: string,
+        topic?: (string | null), 
+    ): Promise<any> {
+        return axios.post<any>(this._webHookUrl, {
+            msg_type: "interactive",
+            card: {
+                elements: [
+                    {
+                        tag: "div",
+                        text: {
+                            content: `${topic || 'UNDEFINED'}: ${message}`,
+                            tag: "lark_md"
+                        }
+                    }
+                ],
+                header: {
+                    title: {
+                        content: `[ERROR]: ${serviceName}`,
+                        tag: "plain_text"
+                    }
+                }
             }
         });
     }
