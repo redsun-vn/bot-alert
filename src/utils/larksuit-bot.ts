@@ -10,11 +10,11 @@ export class LarkSuitAlert {
 	public constructor({ webHookUrl ,secretKey, timestamp }: {
         webHookUrl: string,
         secretKey: string,
-        timestamp: string,
+        timestamp?: string,
     }) {
         this._webHookUrl = webHookUrl;
         this._secretKey = secretKey;
-        this._timestamp = timestamp;
+        this._timestamp = timestamp || null;
     }
 
 	genSignature(): string {
