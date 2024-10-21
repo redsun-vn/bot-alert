@@ -1,4 +1,4 @@
-import { LarkSuitAlert } from './larksuit-bot';
+import { LarkSuitAlert } from './utils/larksuit-bot';
 async function main(): Promise<void> {
     const timestamp = String(Math.floor(Date.now() / 1000) + 100);
 	const botLark = new LarkSuitAlert({

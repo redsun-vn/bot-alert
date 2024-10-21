@@ -1,6 +1,6 @@
 import * as crypto from 'crypto';
 import axios from 'axios';
-import { HashAlgorithm } from './enums';
+import { HashAlgorithm } from '../enums';
 
 export class LarkSuitAlert {
     private _webHookUrl;
