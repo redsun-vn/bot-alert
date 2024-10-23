@@ -54,7 +54,7 @@ export class LarkSuitAlert {
                     {
                         tag: "div",
                         text: {
-                            content: `${topic || 'UNDEFINED'}: ${message}`,
+                            content: `${topic + ':' || ''} ${message}`,
                             tag: "lark_md"
                         }
                     }
