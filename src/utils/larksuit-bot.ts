@@ -33,13 +33,17 @@ export class LarkSuitAlert {
         message: string,
         topic?: (string | null), 
     ): Promise<any> {
-        return axios.post<any>(this._webHookUrl, {
-            timestamp: this._timestamp,
-            msg_type: "text",
-            content: {
-                text: `${serviceName}` + (topic || '') + message
-            }
-        });
+        try {
+            return axios.post<any>(this._webHookUrl, {
+                timestamp: this._timestamp,
+                msg_type: "text",
+                content: {
+                    text: `${serviceName}` + (topic || '') + message
+                }
+            });
+        } catch (error) {
+            throw error
+        }
     }
 
     async sendMessageError(
@@ -47,25 +51,29 @@ export class LarkSuitAlert {
         message: string,
         topic?: (string | null), 
     ): Promise<any> {
-        return axios.post<any>(this._webHookUrl, {
-            msg_type: "interactive",
-            card: {
-                elements: [
-                    {
-                        tag: "div",
-                        text: {
-                            content: `${topic + ':' || ''} ${message}`,
-                            tag: "lark_md"
+        try {
+            return axios.post<any>(this._webHookUrl, {
+                msg_type: "interactive",
+                card: {
+                    elements: [
+                        {
+                            tag: "div",
+                            text: {
+                                content: `${topic + ':' || ''} ${message}`,
+                                tag: "lark_md"
+                            }
+                        }
+                    ],
+                    header: {
+                        title: {
+                            content: `[ERROR]: ${serviceName}`,
+                            tag: "plain_text"
                         }
                     }
-                ],
-                header: {
-                    title: {
-                        content: `[ERROR]: ${serviceName}`,
-                        tag: "plain_text"
-                    }
                 }
-            }
-        });
-    }
+            });
+        } catch (error) {
+            throw error
+        }
+    } 
 }
