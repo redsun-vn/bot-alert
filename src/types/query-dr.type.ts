@@ -125,11 +125,9 @@ export type QueryDrResponseFromVNPay = {
 	vnp_TransactionNo?: number | string;
 };
 
-export type QueryDrResponseLogger = LoggerData<
-	{
-		createdAt: Date;
-	}
->;
+export type QueryDrResponseLogger = LoggerData<{
+	createdAt: Date;
+}>;
 
 export type QueryDrResponseOptions<Fields extends keyof QueryDrResponseLogger> =
 	{

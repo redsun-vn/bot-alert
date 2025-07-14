@@ -1,6 +1,6 @@
 import crypto, { type BinaryLike } from "node:crypto";
 import { tz, utc } from "moment-timezone";
-import { HashAlgorithm } from "../enums";
+import type { HashAlgorithm } from "../enums";
 
 export function getDateInGMT7(date?: Date): Date {
 	return new Date(
